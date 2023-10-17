@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Ec2 Instance Automation for our Development Enviroment"
+Metadata: 
+
+Parameters: 
+
+Mappings: 
+
+Conditions: 
+
+Resources: 
+
+Outputs:
