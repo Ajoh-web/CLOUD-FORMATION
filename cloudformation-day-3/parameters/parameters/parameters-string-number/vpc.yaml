@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion:  2010-09-09
+Description: "This template provisions our."
+Metadata: {}
+
+Parameters: {}
+  paramName:
+    Description: 
+    Type: String|Number|CommaDelimitedList
+    Default: :
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 
+        LogGroupName: 
+Mappings: {}
+Conditions: {}
+Resources:
+  #development vPC
+  DevVPC: 
+    Type: "AWS::EC2::VPC" 
+    Properties:
+     CidrBlock: 10.0.0.0/16
+     EnableDnsSupport: true
+     Tags:
+          - Key: Name
+            Value: MyVPC
+     
+
+  #webserver subnet
+  DevWebserversubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref  DevVPC
+      CidrBlock: 10.0.1.0/24
+      Tags:
+        - Key: Name
+          Value: DevWebserversubnet
+
+  #appserver subnet
+  DevAppserversubnet :
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref  DevVPC
+      CidrBlock: 10.0.2.0/24
+      Tags:
+        - Key: Name
+          Value: DevAppserversubnet 
+
+  #dataserver subnet
+  DevDataserversubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: !Ref  DevVPC
+      CidrBlock: 10.0.3.0/24
+      Tags:
+        - Key: Name
+          Value: DevDataserversubnet
+
+       
+        
+Outputs: {}
