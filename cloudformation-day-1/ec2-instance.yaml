@@ -1,44 +1,34 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: "Ec2 Instance Automation for our Development Enviroment"
 Metadata: {}
-
 Parameters: {}
-
 Mappings: {}
-
-Conditions: {} 
-
-Resources: 
-myEC2Instance:
-  Type: AWS::EC2::Instance
-  Properties:
-    KeyName: 
-    DisableApiTermination: 
-    ImageId: 
-    InstanceType: 
-    Monitoring: true|false
-    SecurityGroupIds:
-      - sg-id
-    UserData: !Base64 |
-      #!/bin/bash -ex
-      # put your script here
-    Tags:
-      - Key: key
-        Value: value
-    
+Conditions: {}
+Resources:
+  DevWebserver:
+    Type: 'AWS::EC2::Instance'
     Properties:
-      KeyName: 
-      DisableApiTermination: 
-      ImageId: 
-      InstanceType: 
-      Monitoring: true|false
-      SecurityGroupIds:
-        - sg-id
-      UserData: !Base64 |
-        #!/bin/bash -ex
-        # put your script here
+      KeyName: Ajoh-keypair
+      ImageId: ami-0df435f331839b2d6
+      InstanceType: t2.micro
+      Monitoring: true
+      SecurityGroupIds: 
+        - sg-0357896472171d48f
+      UserData: !Base64 
+        #!/bin/bash
+        sudo su
+        apt update -y
+        apt -y install apache2
+        systemctl start apache2
+        systemctl enable apache2
+        apt install wget -y
+        wget
+        https://github.com/awanmbandi/google-cloud-projects/raw/jjtech-flix-app/jjtech-streaming-application-v1.zip 
+        apt install unzip -y
+        unzip jjtech-streaming-application-v1.zip
+        rm -f /var/www/html/index.html
+        cp -rf jjtech-streaming-application-v1/* /var/www/html/   
       Tags:
-        - Key: key
-          Value: value
-
+        - Key: Name
+          Value: DevWebserver
 Outputs: {}
